@@ -65,7 +65,10 @@ The following processes can be specified in the `process` field of the run card:
 
 ## ⚙️ Run Card Configuration
 
-The simulation is controlled via `card/run_card.dat`. Below is a description of the parameters:
+The simulation is controlled via `card/cross_section_card.dat` or `card/events_card.dat`.
+The first file is used for cross-section calculations, while the second is for event generation.
+
+Below is a description of the parameters:
 
 ### Process and Beam
 * **process**: The name of the process from the list above.
@@ -96,5 +99,6 @@ The simulation is controlled via `card/run_card.dat`. Below is a description of 
 Run the generator by passing the path to your run card:
 
 ```bash
-python generator.py --card card/run_card.dat
+python events.py --card card/events_card.dat
+python cross_section.py --card card/cross_section_card.dat
 ```

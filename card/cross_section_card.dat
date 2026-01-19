@@ -3,7 +3,7 @@
 # ==============================================================================
 
 # --- Process and Beam Configuration ---
-process       = s_p        # Process name (see readme for a full list)
+process       = d_p        # Process name (see readme for a full list)
 E_muon        = 5000.0        # Muon beam energy [GeV]
 
 # --- PDF Settings ---
@@ -11,8 +11,8 @@ replica       = 0             # Replica ID to use (0 for central member)
 
 # --- Theoretical Cuts ---
 # Physical cuts applied to the integration phase
-Q2_min_theory = 0.0           # Minimum Q2 theory cut [GeV^2]
-W2_min_theory = 0.0           # Minimum W2 theory cut [GeV^2]
+Q2_min_theory = 1.0           # Minimum Q2 theory cut [GeV^2]
+W2_min_theory = 1.0           # Minimum W2 theory cut [GeV^2]
 
 # --- VEGAS Integration Parameters ---
 vegas_iter    = 10            # Number of iterations for the VEGAS algorithm

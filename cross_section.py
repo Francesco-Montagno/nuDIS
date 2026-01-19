@@ -7,8 +7,8 @@ from src.couplings.couplings import *
 # ---------------------------------------------------------------------------
 import argparse
 parser = argparse.ArgumentParser(description="Neutrino DIS Event Generator")
-parser.add_argument('-c', '--card', type=str, default='card/run_card.dat', 
-                    help='Path to the run card (default: card/run_card.dat)')
+parser.add_argument('-c', '--card', type=str, default='card/cross_section_card.dat', 
+                    help='Path to the run card (default: card/cross_section_card.dat)')
 args = parser.parse_args()
 
 # ---------------------------------------------------------------------------
@@ -67,7 +67,8 @@ if E_max_bin == -1:
 from src.energy_spectrum.muon_width import * 
 Muon_Width.configure(E_mu, β)
 
-from src.cuts.theory_cut import *
+import src.cuts.theory_cut as cuts
+cuts.configure(card)
 #---------------------------------- Cross Section Dictionary -------------------------------#
 from src.cross_sections.cc.nu_e.antineutrino_positron import *
 from src.cross_sections.cc.nu_mu.neutrino_muon import *
@@ -175,10 +176,22 @@ folder = Path("data","output") / datetime.now().strftime("%Y%m%d_%H%M%S")
 folder.mkdir(parents=True, exist_ok=True)
 print(f"Created folder: {folder}")
 
-with open(f'{folder}/{process}.txt', 'w') as f:
+with open(args.card, 'r') as f_card:
+    card_content = f_card.read()
+    
+with open(f'{folder}/{process}.txt', 'w') as file:
+    file.write("# =============================================================\n")
+    file.write("#                       RUN CONFIGURATION                      \n")
+    file.write("# =============================================================\n")
+    
+    for line in card_content.splitlines():
+        file.write(f"# {line}\n")
+        
+    file.write("# =============================================================\n\n")
+    file.write("# x_i\tQ2_j\tE_k\txsec\n")
     for result in results:
         i, j, k, xsec, xsec_dev = result
-        f.write(f"{i}\t{j}\t{k}\t{xsec}\n")
+        file.write(f"{i}\t{j}\t{k}\t{xsec}\n")
         
 
 

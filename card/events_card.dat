@@ -1,0 +1,37 @@
+# ==============================================================================
+#                          NEUTRINO GENERATOR RUN CARD
+# ==============================================================================
+
+# --- Process and Beam Configuration ---
+n_events      = 1e6           # Number of events to be generated   
+process       = d_p           # Process name (see readme for a full list)
+E_muon        = 5000.0        # Muon beam energy [GeV]
+
+# --- PDF Settings ---
+replica       = 0             # Replica ID to use (0 for central member)
+
+# --- Theoretical Cuts ---
+# Physical cuts applied to the integration phase
+Q2_min_theory = 1.0           # Minimum Q2 theory cut [GeV^2]
+W2_min_theory = 1.0           # Minimum W2 theory cut [GeV^2]
+
+# --- VEGAS Integration Parameters ---
+vegas_iter    = 100            # Number of iterations for the VEGAS algorithm
+vegas_eval    = 100000          # Number of function evaluations per iteration
+ncores        = 7             # Number of cores used for the integration 
+
+# ==============================================================================
+#                             BINNING CONFIGURATION
+# ==============================================================================
+
+# --- Bjorken x Binning ---
+x_min_bin     = 0.001         # Lower boundary for x bins
+x_max_bin     = 1.0           # Upper boundary for x bins
+
+# --- Q2 Binning ---
+Q2_min_bin    = 1.0           # Lower boundary for Q2 bins [GeV^2]
+Q2_max_bin    = 10000.0       # Upper boundary for Q2 bins [GeV^2]
+
+# --- Energy Binning ---
+E_min_bin     = 0.0           # Lower boundary for Energy bins [GeV]
+E_max_bin     = -1            # Upper boundary [GeV]. Set -1 for kinematic max
