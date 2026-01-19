@@ -1,0 +1,21 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "nuDIS_Generator"
+version = "0.1.0"
+authors = [
+  { name="Francesco Montagno", email="fmontagno@ifae.es" },
+]
+description = "A LO Neutrino DIS Event Generator"
+readme = "readme.md"
+requires-python = ">=3.11"
+dependencies = [
+    "numpy",
+    "vegas",
+]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["src*"]
