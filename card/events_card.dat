@@ -3,11 +3,11 @@
 # ==============================================================================
 
 # --- Name ---
-name          = 
+name          = ubar_n
 
 # --- Process and Beam Configuration ---
-n_events      = 2e5           # Number of events to be generated   
-process       = d_p           # Process name (see readme for a full list)
+n_events      = 2e6           # Number of events to be generated   
+process       = ubar_n           # Process name (see readme for a full list)
 E_muon        = 5000.0        # Muon beam energy [GeV]
 
 # --- PDF Settings ---
@@ -28,7 +28,7 @@ ncores        = 7             # Number of cores used for the integration
 # ==============================================================================
 
 # --- Bjorken x Binning ---
-x_min_bin     = 0.001         # Lower boundary for x bins
+x_min_bin     = 0.0005         # Lower boundary for x bins
 x_max_bin     = 1.0           # Upper boundary for x bins
 
 # --- Q2 Binning ---

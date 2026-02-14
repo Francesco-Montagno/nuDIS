@@ -150,6 +150,72 @@ crossSection = {
         'nunub_db_neutron': nc.dsigma_MuC_dxdQ2_nunub_db_neutron,
 }
 
+PID_Process = {
+        # nu p
+        'd_p'   : (pdg_id("d"), 2212),
+        's_p'   : (pdg_id("s"), 2212),
+        'b_p'   : (pdg_id("b"), 2212),
+        'ubar_p': (pdg_id("ub"), 2212),
+        'cbar_p': (pdg_id("cb"), 2212),
+        #--------------------------#
+        # nubar p
+        'dbar_p'  : (pdg_id("db"), 2212),
+        'sbar_p'  : (pdg_id("sb"), 2212),
+        'bbar_p'  : (pdg_id("bb"), 2212),
+        'u_p'   : (pdg_id("u"), 2212),
+        'c_p'   : (pdg_id("c"), 2212),
+        #-------------------------#
+        # nu n (neutron)
+        'd_n'   : (pdg_id("d"), 2112),
+        'ubar_n': (pdg_id("ub"), 2112),
+        #--------------------------#
+        # nubar n (neutron)
+        'dbar_n'  : (pdg_id("db"), 2112),
+        'u_n'   : (pdg_id("u"), 2112),
+        #-------------------------#
+        #---- Neutral Current ----#
+        #--------------------------------#
+        #----------- nu -----------------#
+        'nu_u'   : (pdg_id("u"), 2212),
+        'nu_ub'  : (pdg_id("ub"), 2212),
+        'nu_d'   : (pdg_id("d"), 2212),
+        'nu_db'  : (pdg_id("db"), 2212),
+        'nu_s'   : (pdg_id("s"), 2212),
+        'nu_sb'  : (pdg_id("sb"), 2212),
+        'nu_c'   : (pdg_id("c"), 2212),
+        'nu_cb'  : (pdg_id("cb"), 2212),
+        'nu_b'   : (pdg_id("b"), 2212),
+        'nu_bb'  : (pdg_id("bb"), 2212),
+        #-------------------------------#
+        #----------- nubar -------------#
+        'nub_u'   : (pdg_id("ub"), 2212),
+        'nub_ub'  : (pdg_id("ub"), 2212),
+        'nub_d'   : (pdg_id("db"), 2212),
+        'nub_db'  : (pdg_id("db"), 2212),
+        'nub_s'   : (pdg_id("sb"), 2212),
+        'nub_sb'  : (pdg_id("sb"), 2212),
+        'nub_c'   : (pdg_id("cb"), 2212),
+        'nub_cb'  : (pdg_id("cb"), 2212),
+        'nub_b'   : (pdg_id("b"), 2212),
+        'nub_bb'  : (pdg_id("bb"), 2212),
+        #---------------------------------#
+        #------------ nu-nubar -----------#
+        'nunub_u' : (pdg_id("u"), 2212),
+        'nunub_ub': (pdg_id("ub"), 2212),
+        'nunub_d' : (pdg_id("d"), 2212),
+        'nunub_db': (pdg_id("db"), 2212),
+        'nunub_s' : (pdg_id("s"), 2212),
+        'nunub_sb': (pdg_id("sb"), 2212),
+        'nunub_c' : (pdg_id("c"), 2212),
+        'nunub_cb': (pdg_id("cb"), 2212),
+        'nunub_b' : (pdg_id("b"), 2212),
+        'nunub_bb': (pdg_id("bb"), 2212),
+
+        'nunub_u_neutron' : (pdg_id("u"), 2112),
+        'nunub_ub_neutron': (pdg_id("ub"), 2112),
+        'nunub_d_neutron' : (pdg_id("d"), 2112),
+        'nunub_db_neutron': (pdg_id("db"), 2112),
+}
 
 
 if __name__ == '__main__':
@@ -175,7 +241,6 @@ if __name__ == '__main__':
 #--------------------------- Generating and Saving Events -----------------------------#
 
 #--------------------------- Generating and Saving Events -----------------------------#
-
     x_ev, Q2_ev, E_nu_ev, weight_ev = [], [], [], []
 
     for x, wgt in integral.random():
@@ -203,12 +268,13 @@ if __name__ == '__main__':
         for line in card_content.splitlines():
             file.write(f"# {line}\n")
         file.write("# =============================================================\n\n")
-        
-        file.write("# x\tQ2\tE\tWeight\n")
+
+        file.write("# PID Parton\t PID Nucleon\t x\tQ2\tE\tWeight\n")
         # Salviamo solo gli eventi con peso > 0 per pulizia
         mask = weight_ev > 0
+        PID = PID_Process[process]
         for x, Q2, E, w in zip(x_ev[mask], Q2_ev[mask], E_nu_ev[mask], weight_ev[mask]):
-            file.write(f"{x}\t{Q2}\t{E}\t{w}\n")
+            file.write(f"{PID[0]}\t{PID[1]}\t{x}\t{Q2}\t{E}\t{w}\n")
 
 
 
