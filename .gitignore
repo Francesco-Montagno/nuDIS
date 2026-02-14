@@ -1,7 +1,7 @@
 # -- Project Specific ---
 data/output/*
 !data/output/.gitkeep
-
+tests/*
 
 # --- Python Temporaries ---
 __pycache__/

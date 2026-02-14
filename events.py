@@ -19,6 +19,10 @@ from src.utils.read_card import *
 print(f"Reading configuration from: {args.card}")
 card = InputCard(args.card)
 
+
+# --- Name ---
+name           = card.get("name")          # str: "My Neutrino DIS Run"
+print(f"Run Name: {name}")
 # --- Process and Beam ---
 process_name   = card.get("process")       # str: eg "cbar_p"
 E_muon         = card.get("E_muon")        # float: 1500.0
@@ -150,8 +154,11 @@ crossSection = {
 
 if __name__ == '__main__':
     process = process_name
+    if name == "":
+        folder = Path("data","output") / datetime.now().strftime("%Y%m%d_%H%M%S")
+    else:
+        folder = Path("data","output") / name
     
-    folder = Path("data","output") / datetime.now().strftime("%Y%m%d_%H%M%S")
     folder.mkdir(parents=True, exist_ok=True)
     print(f"Created folder: {folder}")
     

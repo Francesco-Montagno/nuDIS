@@ -23,16 +23,16 @@ vegas_eval    = 1000          # Number of function evaluations per iteration
 # ==============================================================================
 
 # --- Bjorken x Binning ---
-num_bins_x    = 1            # Number of bins for x
+num_bins_x    = 10            # Number of bins for x
 x_min_bin     = 0.001         # Lower boundary for x bins
 x_max_bin     = 1.0           # Upper boundary for x bins
 
 # --- Q2 Binning ---
-num_bins_Q2   = 1            # Number of bins for Q2
+num_bins_Q2   = 10            # Number of bins for Q2
 Q2_min_bin    = 1.0           # Lower boundary for Q2 bins [GeV^2]
 Q2_max_bin    = 10000.0       # Upper boundary for Q2 bins [GeV^2]
 
 # --- Energy Binning ---
-num_bins_E    = 1             # Number of bins for Energy
+num_bins_E    = 10             # Number of bins for Energy
 E_min_bin     = 0.0           # Lower boundary for Energy bins [GeV]
 E_max_bin     = -1            # Upper boundary [GeV]. Set -1 for kinematic max
