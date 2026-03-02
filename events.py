@@ -10,6 +10,8 @@ import argparse
 parser = argparse.ArgumentParser(description="Neutrino DIS Event Generator")
 parser.add_argument('-c', '--card', type=str, default='card/events_card.dat', 
                     help='Path to the run card (default: card/events_card.dat)')
+parser.add_argument('-f', '--folder', type=str, default=None,
+                    help='Folder in which to save the output (overrides name from card)')
 args = parser.parse_args()
 
 # ---------------------------------------------------------------------------
@@ -220,11 +222,16 @@ PID_Process = {
 
 if __name__ == '__main__':
     process = process_name
-    if name == "":
-        folder = Path("data","output") / datetime.now().strftime("%Y%m%d_%H%M%S")
+    from datetime import datetime
+
+    if args.folder is not None:
+        folder = Path("data","output",args.folder)
     else:
-        folder = Path("data","output") / name
-    
+        if name == "":
+            folder = Path("data","output") / datetime.now().strftime("%Y%m%d_%H%M%S")
+        else:
+            folder = Path("data","output") / name
+
     folder.mkdir(parents=True, exist_ok=True)
     print(f"Created folder: {folder}")
     

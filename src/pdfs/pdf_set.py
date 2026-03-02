@@ -1,6 +1,6 @@
 import lhapdf
 
-pdf_set_name = f"PDF4LHC21_40"
+pdf_set_name = f"new_PDF4LHC21_300"
 
 pset = lhapdf.getPDFSet(pdf_set_name)
 pdfs = pset.mkPDFs()
