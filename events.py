@@ -12,6 +12,36 @@ parser.add_argument('-c', '--card', type=str, default='card/events_card.dat',
                     help='Path to the run card (default: card/events_card.dat)')
 parser.add_argument('-f', '--folder', type=str, default=None,
                     help='Folder in which to save the output (overrides name from card)')
+parser.add_argument('--n_events', type=int, nargs='?', default=2e6,
+                    help='Number of events to generate (overrides n_events from card)')
+parser.add_argument('--process', type=str, nargs='?', default=None,
+                    help='Process to simulate (overrides process from card)')
+parser.add_argument('--E_muon', type=float, nargs='?', default=None,
+                    help='Muon energy (overrides E_muon from card)')
+parser.add_argument('--replica', type=int, nargs='?', default=None,
+                    help='PDF replica ID (overrides replica from card)')
+parser.add_argument('--Q2_min_theory', type=float, nargs='?', default=None,
+                    help='Minimum Q2 for theoretical cuts (overrides Q2_min_theory from card)')
+parser.add_argument('--W2_min_theory', type=float, nargs='?', default=None,
+                    help='Minimum W2 for theoretical cuts (overrides W2_min_theory from card)')
+parser.add_argument('--vegas_iter', type=int, nargs='?', default=None,
+                    help='Number of VEGAS iterations (overrides vegas_iter from card)')
+parser.add_argument('--vegas_eval', type=int, nargs='?', default=None,
+                    help='Number of VEGAS evaluations (overrides vegas_eval from card)')
+parser.add_argument('--ncores', type=int, nargs='?', default=None,
+                    help='Number of CPU cores to use (overrides ncores from card)')
+parser.add_argument('--x_min_bin', type=float, nargs='?', default=None,
+                    help='Minimum x for binning (overrides x_min_bin from card)')
+parser.add_argument('--x_max_bin', type=float, nargs='?', default=None,
+                    help='Maximum x for binning (overrides x_max_bin from card)')
+parser.add_argument('--Q2_min_bin', type=float, nargs='?', default=None,
+                    help='Minimum Q2 for binning (overrides Q2_min_bin from card)')
+parser.add_argument('--Q2_max_bin', type=float, nargs='?', default=None,
+                    help='Maximum Q2 for binning (overrides Q2_max_bin from card)')
+parser.add_argument('--E_min_bin', type=float, nargs='?', default=None,
+                    help='Minimum energy for binning (overrides E_min_bin from card)')
+parser.add_argument('--E_max_bin', type=float, nargs='?', default=None,
+                    help='Maximum energy for binning (overrides E_max_bin from card)')
 args = parser.parse_args()
 
 # ---------------------------------------------------------------------------
@@ -23,36 +53,83 @@ card = InputCard(args.card)
 
 
 # --- Name ---
-name           = card.get("name")          # str: "My Neutrino DIS Run"
-print(f"Run Name: {name}")
+if args.folder is None:
+    name           = card.get("name")          # str: "My Neutrino DIS Run"
+else:
+    name          = args.folder         # str: "My Neutrino DIS Run"
 # --- Process and Beam ---
-process_name   = card.get("process")       # str: eg "cbar_p"
-E_muon         = card.get("E_muon")        # float: 1500.0
+if args.process is  None:
+    process_name   = card.get("process")       # str: eg "cbar_p"
+else:
+    process_name   = args.process       # str: eg "cbar_p"
+    
+if args.E_muon is None:
+    E_muon         = card.get("E_muon")        # float: 1500.0
+else:
+    E_muon         = args.E_muon        # float: 1500.0
 
-# --- PDF Settings ---
-replica_id     = card.get("replica")       # int: 0
+    # --- PDF Settings ---
+if args.replica is None:
+    replica_id     = card.get("replica")       # int: 0
+else:
+    replica_id     = args.replica       # int: 0
 
-# --- Theoretical Cuts ---
-Q2_min_theory  = card.get("Q2_min_theory") # float: 0.0
-W2_min_theory  = card.get("W2_min_theory") # float: 0.0
+    # --- Theoretical Cuts ---
+if args.Q2_min_theory is None:
+    Q2_min_theory  = card.get("Q2_min_theory") # float: 0.0
+else:
+    Q2_min_theory  = args.Q2_min_theory # float: 0.0
 
-# --- VEGAS Integration ---
-n_iter         = card.get("vegas_iter")    # int: 10
-n_eval         = card.get("vegas_eval")    # int: 1000
-ncores         = card.get("ncores")        # int: number of cores to use
-n_events       = card.get("n_events")      # int: number of events to generate
-# --- Binning: X ---
-x_min_bin      = card.get("x_min_bin")     # float: 0.001
-x_max_bin      = card.get("x_max_bin")     # float: 1.0
+if args.W2_min_theory is None:
+    W2_min_theory  = card.get("W2_min_theory") # float: 0.0
+else:
+    W2_min_theory  = args.W2_min_theory # float: 0.0
 
-# --- Binning: Q2 ---
-Q2_min_bin     = card.get("Q2_min_bin")    # float: 1.0
-Q2_max_bin     = card.get("Q2_max_bin")    # float: 3000.0
+    # --- VEGAS Integration ---
+if args.vegas_iter is None:
+    n_iter         = card.get("vegas_iter")    # int: 10
+else: 
+    n_iter         = args.vegas_iter    # int: 10
+if args.vegas_eval is None:
+    n_eval         = card.get("vegas_eval")    # int: 1000
+else:
+    n_eval         = args.vegas_eval    # int: 1000
+if args.ncores is None:
+    ncores         = card.get("ncores")        # int: number of cores to use
+else:
+    ncores         = args.ncores        # int: number of cores to use
+if args.n_events is None:
+    n_events       = card.get("n_events")      # int: number of events to generate
+else:
+    n_events       = args.n_events      # int: number of events to generate
+    # --- Binning: X ---
+if args.x_min_bin is  None:
+    x_min_bin      = card.get("x_min_bin")     # float: 0.001
+else:
+    x_min_bin      = args.x_min_bin     # float: 0.001
+if args.x_max_bin is  None:
+    x_max_bin      = card.get("x_max_bin")     # float: 1.0
+else:
+    x_max_bin      = args.x_max_bin     # float: 1.0
 
-# --- Binning: Energy ---
-E_min_bin      = card.get("E_min_bin")     # float: 0.0
-E_max_bin      = card.get("E_max_bin")     # float: -1.0 to be handled
-
+    # --- Binning: Q2 ---
+if args.Q2_min_bin is  None:
+    Q2_min_bin     = card.get("Q2_min_bin")    # float: 1.0
+else:
+    Q2_min_bin     = args.Q2_min_bin    # float: 1.0
+if args.Q2_max_bin is  None:
+    Q2_max_bin     = card.get("Q2_max_bin")    # float: 3000.0
+else:
+    Q2_max_bin     = args.Q2_max_bin    # float: 3000.0
+    # --- Binning: Energy ---
+if args.E_min_bin is  None:
+    E_min_bin      = card.get("E_min_bin")     # float: 0.0
+else: 
+    E_min_bin      = args.E_min_bin     # float: 0.0
+if args.E_max_bin is  None:
+    E_max_bin      = card.get("E_max_bin")     # float: -1.0 to be handled
+else:
+    E_max_bin      = args.E_max_bin     # float: -1.0 to be handled
 
 #------------------------------------- Config ----------------------------------#
 
@@ -275,14 +352,15 @@ if __name__ == '__main__':
         for line in card_content.splitlines():
             file.write(f"# {line}\n")
         file.write("# =============================================================\n\n")
-
+        print("# =============================================================\n\n")
         file.write("# PID Parton\t PID Nucleon\t x\tQ2\tE\tWeight\n")
+        print("# PID Parton\t PID Nucleon\t x\tQ2\tE\tWeight\n")
         # Salviamo solo gli eventi con peso > 0 per pulizia
         mask = weight_ev > 0
         PID = PID_Process[process]
         for x, Q2, E, w in zip(x_ev[mask], Q2_ev[mask], E_nu_ev[mask], weight_ev[mask]):
             file.write(f"{PID[0]}\t{PID[1]}\t{x}\t{Q2}\t{E}\t{w}\n")
-
+            print(f"{PID[0]}\t{PID[1]}\t{x}\t{Q2}\t{E}\t{w}")
 
 
 
