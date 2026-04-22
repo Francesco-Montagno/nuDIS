@@ -1,0 +1,16 @@
+LHAPDF 6.5.5 loading all 41 PDFs in set PDF4LHC21_40
+PDF4LHC21_40, version 1; 41 PDF members
+Reading configuration from: card/events_card.dat
+Cuts set to: Q2_min=2.0, W2_min=4.0
+Created folder: data/output/d_p/Q2_1000_10000
+LHAPDF 6.5.5 loading all 41 PDFs in set PDF4LHC21_40
+PDF4LHC21_40, version 1; 41 PDF members
+LHAPDF 6.5.5 loading all 41 PDFs in set PDF4LHC21_40
+PDF4LHC21_40, version 1; 41 PDF members
+itn   integral        average         chi2/dof        Q
+-------------------------------------------------------
+  1   0.42944(42)     0.42944(42)         0.00     1.00
+  2   0.42951(40)     0.42948(29)         0.01     0.91
+
+Thanks for using LHAPDF 6.5.5. Please make sure to cite the paper:
+  Eur.Phys.J. C75 (2015) 3, 132  (http://arxiv.org/abs/1412.7420)

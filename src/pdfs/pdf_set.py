@@ -1,9 +1,10 @@
 import lhapdf
 
-pdf_set_name = f"new_PDF4LHC21_300"
+pdfs      = None
+p_central = None
 
-pset = lhapdf.getPDFSet(pdf_set_name)
-pdfs = pset.mkPDFs()
-
-
-p_central = pdfs[0]
+def configure(pdf_set_name):
+    global pdfs, p_central
+    pset      = lhapdf.getPDFSet(pdf_set_name)
+    pdfs      = pset.mkPDFs()
+    p_central = pdfs[0]

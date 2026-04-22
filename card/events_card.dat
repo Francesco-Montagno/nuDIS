@@ -2,21 +2,19 @@
 #                          NEUTRINO GENERATOR RUN CARD
 # ==============================================================================
 
-# --- Name ---
-name          = cbar_p
-
 # --- Process and Beam Configuration ---
 n_events      = 2e6           # Number of events to be generated   
-process       = cbar_p           # Process name (see readme for a full list)
+process       = ubar_p           # Process name (see readme for a full list)
 E_muon        = 5000.0        # Muon beam energy [GeV]
 
 # --- PDF Settings ---
 replica       = 0             # Replica ID to use (0 for central member)
+pdf_set       = PDF4LHC21_40  # LHAPDF PDF set name
 
 # --- Theoretical Cuts ---
 # Physical cuts applied to the integration phase
-Q2_min_theory = 0.0           # Minimum Q2 theory cut [GeV^2]
-W2_min_theory = 0.0           # Minimum W2 theory cut [GeV^2]
+Q2_min_theory = 2.0           # Minimum Q2 theory cut [GeV^2]
+W2_min_theory = 4.0           # Minimum W2 theory cut [GeV^2]
 
 # --- VEGAS Integration Parameters ---
 vegas_iter    = 50            # Number of iterations for the VEGAS algorithm
@@ -28,12 +26,12 @@ ncores        = 7             # Number of cores used for the integration
 # ==============================================================================
 
 # --- Bjorken x Binning ---
-x_min_bin     = 0.0005         # Lower boundary for x bins
+x_min_bin     = 0.0008         # Lower boundary for x bins
 x_max_bin     = 1.0           # Upper boundary for x bins
 
 # --- Q2 Binning ---
-Q2_min_bin    = 25.0           # Lower boundary for Q2 bins [GeV^2]
-Q2_max_bin    = 10000.0       # Upper boundary for Q2 bins [GeV^2]
+Q2_min_bin    = 8          # Lower boundary for Q2 bins [GeV^2]
+Q2_max_bin    = 100      # Upper boundary for Q2 bins [GeV^2]
 
 # --- Energy Binning ---
 E_min_bin     = 0.0           # Lower boundary for Energy bins [GeV]
