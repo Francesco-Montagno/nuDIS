@@ -1,6 +1,7 @@
 # -- Project Specific ---
 data/output/*
 !data/output/.gitkeep
+data/logs/
 tests/*
 
 # --- Python Temporaries ---
@@ -50,3 +51,5 @@ coverage.xml
 
 # --- Claude Code ---
 .claude/
+
+data/logs/
