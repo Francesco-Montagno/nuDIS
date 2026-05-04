@@ -263,12 +263,29 @@ if __name__ == '__main__':
     with open(args.card, 'r') as f_card:
         card_content = f_card.read()
 
+    # Effective values: CLI overrides take precedence over card
+    effective = {
+        "process":       process_name,  "E_muon":        E_muon,
+        "replica":       replica_id,    "pdf_set":       pdf_set_name,
+        "Q2_min_theory": Q2_min_theory, "W2_min_theory": W2_min_theory,
+        "vegas_iter":    n_iter,        "vegas_eval":    n_eval,
+        "ncores":        ncores,        "n_events":      n_events,
+        "x_min_bin":     x_min_bin,     "x_max_bin":     x_max_bin,
+        "Q2_min_bin":    Q2_min_bin,    "Q2_max_bin":    Q2_max_bin,
+        "E_min_bin":     E_min_bin,     "E_max_bin":     E_max_bin,
+    }
+
     with open(f'{folder}/{process}.txt', 'w') as file:
         file.write("# =============================================================\n")
         file.write("#                       RUN CONFIGURATION                      \n")
         file.write("# =============================================================\n")
         for line in card_content.splitlines():
-            file.write(f"# {line}\n")
+            key = line.split('#')[0].split('=')[0].strip()
+            if key in effective:
+                comment = (' #' + line.split('#', 1)[1]) if '#' in line else ''
+                file.write(f"# {key:<13} = {effective[key]:<13}{comment}\n")
+            else:
+                file.write(f"# {line}\n")
         file.write("# =============================================================\n\n")
         file.write("# PID Parton\t PID Nucleon\t x\tQ2\tE\tWeight\n")
 

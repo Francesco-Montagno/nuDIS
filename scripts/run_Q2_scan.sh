@@ -60,7 +60,7 @@ for proc in "${PROCESSES[@]}"; do
         if (( ${#pids[@]} >= MAX_PARALLEL )); then
             for i in "${!pids[@]}"; do
                 wait "${pids[$i]}" && echo "Done:   ${labels[$i]}" \
-                                   || echo "FAILED: ${labels[$i]}"
+                                    || echo "FAILED: ${labels[$i]}"
             done
             pids=()
             labels=()

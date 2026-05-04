@@ -1,0 +1,26 @@
+# HTCondor submit file — CC proton cross section, replicas 0-300
+#
+# Each job computes the 4 CC proton processes (d_p, s_p, ubar_p, cbar_p)
+# for one PDF replica using 4 internal workers.
+#
+# Binning:  x   in [1e-3, 1]  with 10 log-bins
+#           Q2  in [10, 1e4]  with 10 log-bins
+#
+# Submit with:
+#   condor_submit htcondor/cc_proton_xsec.sub
+
+universe   = vanilla
+executable = $(CONDOR_ROOT)/htcondor/run_cc_proton.sh
+arguments  = $(Process)
+
+log    = $(CONDOR_ROOT)/htcondor/logs/cc_proton_$(Process).log
+output = $(CONDOR_ROOT)/htcondor/logs/cc_proton_$(Process).out
+error  = $(CONDOR_ROOT)/htcondor/logs/cc_proton_$(Process).err
+
+# Resources per job: 4 cores (one per CC process run in parallel internally)
+request_cpus   = 4
+request_memory = 4 GB
+
+should_transfer_files   = NO
+
+queue 301

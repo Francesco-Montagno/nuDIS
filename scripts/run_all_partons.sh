@@ -2,7 +2,7 @@
 
 template_card="card/events_card.dat"
 
-processes=("u_p" "d_p" "s_p" "c_p" "ubar_p" "dbar_p" "sbar_p" "cbar_p" )
+processes=("d_p" "s_p" "ubar_p" "cbar_p" )
 
 for p in "${processes[@]}"; do
   output_card="card/run_${p}.dat"
