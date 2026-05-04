@@ -13,6 +13,7 @@ import subprocess
 import sys
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
+from typing import Optional
 
 PROCESSES   = ["d_p", "s_p", "ubar_p", "cbar_p"]
 REPO_ROOT   = Path(__file__).resolve().parent.parent
@@ -44,9 +45,9 @@ def parse_args():
 
 
 def run_process(process: str, replica: int, card: Path, folder: Path,
-                x_min: float | None, x_max: float | None, num_bins_x: int | None,
-                Q2_min: float | None, Q2_max: float | None, num_bins_Q2: int | None,
-                ) -> tuple[str, int]:
+                x_min: Optional[float], x_max: Optional[float], num_bins_x: Optional[int],
+                Q2_min: Optional[float], Q2_max: Optional[float], num_bins_Q2: Optional[int],
+                ) -> tuple:
     cmd = [
         sys.executable, str(XSEC_SCRIPT),
         "--card",    str(card),

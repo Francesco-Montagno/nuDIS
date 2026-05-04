@@ -5,14 +5,11 @@
 
 REPLICA=$1
 REPO_ROOT="$(cd "$(dirname "$0")/.." && pwd)"
-
-# Activate conda environment
-source "$(conda info --base)/etc/profile.d/conda.sh"
-conda activate nudis
+PYTHON=/nfs/pic.es/user/f/fmontagn/miniconda3/envs/nuDIS/bin/python
 
 cd "$REPO_ROOT"
 
-python scripts/run_cc_proton_xsec.py \
+$PYTHON scripts/run_cc_proton_xsec.py \
     --replica     "$REPLICA"  \
     --x_min_bin   1e-3        \
     --x_max_bin   1           \
