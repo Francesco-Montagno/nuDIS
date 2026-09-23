@@ -16,6 +16,10 @@ dependencies = [
     "vegas",
 ]
 
+[project.scripts]
+nudis-smearing = "smearing.add_random_variables:main"
+
 [tool.setuptools.packages.find]
 where = ["."]
-include = ["src*"]
+include = ["src*", "smearing*"]
+exclude = ["smearing.test*"]

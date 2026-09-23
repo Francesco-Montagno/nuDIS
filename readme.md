@@ -102,3 +102,26 @@ Run the generator by passing the path to your run card:
 python events.py --card card/events_card.dat
 python cross_section.py --card card/cross_section_card.dat
 ```
+
+## Detector smearing post-processing
+
+Detector effects are handled separately from event generation. The current
+utility appends three independent standard-normal random variables, `z_x`,
+`z_Q2`, and `z_E`, to each event while preserving the original run
+configuration and event values:
+
+```bash
+python -m smearing.add_random_variables \
+  --input data/output/d_p/d_p.txt \
+  --output data/output/d_p/d_p_with_smearing.txt \
+  --seed 12345
+```
+
+After installing the project, the equivalent `nudis-smearing` command is also
+available with the same options.
+
+The seed is optional. Reusing the same input and seed reproduces the same
+random values, which can later be used to compare correlated
+detector-resolution hypotheses without regenerating random fluctuations. The
+utility only stores the random variables: it does not construct reconstructed
+observables or alter event weights.
