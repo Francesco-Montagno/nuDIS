@@ -202,13 +202,13 @@ PID_Process = {
         'nu_b'  : (pdg_id("b"),  2212),
         'nu_bb' : (pdg_id("bb"), 2212),
         #---------- nubar ---------#
-        'nub_u'  : (pdg_id("ub"), 2212),
+        'nub_u'  : (pdg_id("u"),  2212),  # Updated: PID of quark (was antiquark)
         'nub_ub' : (pdg_id("ub"), 2212),
-        'nub_d'  : (pdg_id("db"), 2212),
+        'nub_d'  : (pdg_id("d"),  2212),  # Updated: PID of quark (was antiquark)
         'nub_db' : (pdg_id("db"), 2212),
-        'nub_s'  : (pdg_id("sb"), 2212),
+        'nub_s'  : (pdg_id("s"),  2212),  # Updated: PID of quark (was antiquark)
         'nub_sb' : (pdg_id("sb"), 2212),
-        'nub_c'  : (pdg_id("cb"), 2212),
+        'nub_c'  : (pdg_id("c"),  2212),  # Updated: PID of quark (was antiquark)
         'nub_cb' : (pdg_id("cb"), 2212),
         'nub_b'  : (pdg_id("b"),  2212),
         'nub_bb' : (pdg_id("bb"), 2212),

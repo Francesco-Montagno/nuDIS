@@ -48,7 +48,8 @@ class Neutrino_NC_Cross_Section():
         theory_limits   = np.where(Q2 /(4* E_nu**2*(1-y))>1,0,1 )
         theory_cut      = np.where(W2 < W2_min, 0, 1) * np.where(Q2<Q2_min,0,1)*np.where(Q2>x*2*E_nu*mp,0,1)
 
-        sigma = Gfsqpi * (pdf/ x * (gZuLSQ + gZuRSQ * OneMinySQ ) ) * theory_cut * theory_limits * (1/(1+Q2/mZ**2)**2)
+        # Updated: couplings swapped for antiquark (gR^2 + gL^2 (1-y)^2)
+        sigma = Gfsqpi * (pdf/ x * (gZuRSQ + gZuLSQ * OneMinySQ ) ) * theory_cut * theory_limits * (1/(1+Q2/mZ**2)**2)
 
         return Muon_Width.dGamma_dE_nu(E_nu) * sigma
 
